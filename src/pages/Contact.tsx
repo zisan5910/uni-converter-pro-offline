@@ -176,10 +176,12 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
       {/* Bottom Navigation */}
       <BottomNav 
         cartCount={cartCount}
+        wishlistCount={0}
         onHomeClick={onHomeClick}
         onSearchClick={onSearchClick}
         onCartClick={onCartClick}
         onContactClick={() => {}}
+        onWishlistClick={() => {}}
         activeTab="contact"
       />
     </div>

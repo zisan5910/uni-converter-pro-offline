@@ -1,5 +1,5 @@
 
-import { X, Plus, Minus, ShoppingBag, ArrowRight, Trash2, Heart, ArrowLeft } from "lucide-react";
+import { X, Plus, Minus, ShoppingBag, ArrowRight, Trash2, Heart, ArrowLeft, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Product } from "@/types/Product";
 import BottomNav from "@/components/BottomNav";
@@ -146,32 +146,50 @@ const CartPage = ({
                   
                   <div className="flex flex-col items-end justify-between">
                     <p className="font-medium text-sm">৳{(item.product.price * item.quantity).toFixed(2)}</p>
-                    <div className="flex gap-1">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex gap-1">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className={`h-7 w-7 ${
+                            wishlist.includes(item.product.id)
+                              ? "text-red-500"
+                              : "text-gray-400"
+                          }`}
+                          onClick={() => onToggleWishlist(item.product.id)}
+                        >
+                          <Heart 
+                            className={`h-3 w-3 ${
+                              wishlist.includes(item.product.id) 
+                                ? "fill-current" 
+                                : ""
+                            }`} 
+                          />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-7 w-7 text-red-500"
+                          onClick={() => onUpdateQuantity(item.product.id, item.size, 0)}
+                        >
+                          <Trash2 className="h-3 w-3" />
+                        </Button>
+                      </div>
                       <Button
-                        variant="ghost"
-                        size="icon"
-                        className={`h-7 w-7 ${
-                          wishlist.includes(item.product.id)
-                            ? "text-red-500"
-                            : "text-gray-400"
-                        }`}
-                        onClick={() => onToggleWishlist(item.product.id)}
+                        variant="outline"
+                        size="sm"
+                        className="h-7 px-3 text-xs font-medium"
+                        onClick={() => {
+                          const orderDetails = `Product: ${item.product.name} (Size: ${item.size}) - Quantity: ${item.quantity}\nTotal Amount: ৳${(item.product.price * item.quantity).toFixed(2)}`;
+                          if (navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText(orderDetails).catch(() => {
+                              console.log('Order details:', orderDetails);
+                            });
+                          }
+                          window.open("https://forms.gle/pCunH9M1Z3ez9VnU9", "_blank");
+                        }}
                       >
-                        <Heart 
-                          className={`h-3 w-3 ${
-                            wishlist.includes(item.product.id) 
-                              ? "fill-current" 
-                              : ""
-                          }`} 
-                        />
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-7 w-7 text-red-500"
-                        onClick={() => onUpdateQuantity(item.product.id, item.size, 0)}
-                      >
-                        <Trash2 className="h-3 w-3" />
+                        Buy Now
                       </Button>
                     </div>
                   </div>
@@ -219,10 +237,12 @@ const CartPage = ({
       {/* Bottom Navigation */}
       <BottomNav 
         cartCount={cartCount}
+        wishlistCount={0}
         onHomeClick={onHomeClick}
         onSearchClick={onSearchClick}
         onCartClick={onClose}
         onContactClick={onContactClick}
+        onWishlistClick={() => {}}
         activeTab="cart"
       />
     </div>

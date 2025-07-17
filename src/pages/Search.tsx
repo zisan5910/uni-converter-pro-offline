@@ -403,10 +403,12 @@ const Search = ({
       {/* Bottom Navigation */}
       <BottomNav 
         cartCount={cartCount}
+        wishlistCount={0}
         onHomeClick={onHomeClick}
         onSearchClick={() => {}}
         onCartClick={onCartClick}
         onContactClick={onContactClick}
+        onWishlistClick={() => {}}
         activeTab="search"
       />
     </div>

@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Heart, Filter, X } from "lucide-react";
+import { Heart, Filter, X, ShoppingCart, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import ProductGrid from "@/components/ProductGrid";
@@ -1069,6 +1069,29 @@ const Index = () => {
                 </span>
               )}
             </Button>
+            
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="relative hover:bg-gray-50 h-8 w-8"
+              onClick={() => setCurrentPage("cart")}
+            >
+              <ShoppingCart className="h-4 w-4" />
+              {cartItemsCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full h-4 w-4 flex items-center justify-center text-[10px]">
+                  {cartItemsCount}
+                </span>
+              )}
+            </Button>
+            
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="hover:bg-gray-50 h-8 w-8"
+              onClick={() => window.open("https://ridoan-zisan.netlify.app", "_blank")}
+            >
+              <Code className="h-4 w-4" />
+            </Button>
           </div>
         </div>
       </header>
@@ -1147,10 +1170,12 @@ const Index = () => {
       {/* Bottom Navigation */}
       <BottomNav 
         cartCount={cartItemsCount}
+        wishlistCount={wishlist.length}
         onHomeClick={navigationHandlers.onHomeClick}
         onSearchClick={navigationHandlers.onSearchClick}
         onCartClick={navigationHandlers.onCartClick}
         onContactClick={navigationHandlers.onContactClick}
+        onWishlistClick={() => setIsWishlistOpen(true)}
         activeTab={currentPage}
       />
     </div>

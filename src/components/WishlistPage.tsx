@@ -85,10 +85,12 @@ const WishlistPage = ({
       {/* Bottom Navigation */}
       <BottomNav 
         cartCount={cartCount}
+        wishlistCount={products.length}
         onHomeClick={handleHomeClick}
         onSearchClick={onSearchClick}
         onCartClick={onCartClick}
         onContactClick={onContactClick}
+        onWishlistClick={() => {}}
         activeTab="wishlist"
       />
     </div>

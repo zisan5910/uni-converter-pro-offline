@@ -4,24 +4,28 @@ import { Button } from "@/components/ui/button";
 
 interface BottomNavProps {
   cartCount: number;
+  wishlistCount: number;
   onHomeClick: () => void;
   onSearchClick: () => void;
   onCartClick: () => void;
   onContactClick: () => void;
+  onWishlistClick: () => void;
   activeTab?: string;
 }
 
 const BottomNav = ({ 
   cartCount, 
+  wishlistCount,
   onHomeClick, 
   onSearchClick, 
   onCartClick, 
   onContactClick,
+  onWishlistClick,
   activeTab = "home"
 }: BottomNavProps) => {
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-40">
-      <div className="flex items-center justify-around max-w-md mx-auto">
+      <div className="flex items-center justify-around max-w-md md:max-w-2xl lg:max-w-4xl mx-auto">
         <Button 
           variant="ghost" 
           className={`flex flex-col items-center gap-1 h-auto py-2 ${
@@ -42,6 +46,22 @@ const BottomNav = ({
         >
           <Search className="h-5 w-5" />
           <span className="text-xs">Search</span>
+        </Button>
+        
+        <Button 
+          variant="ghost" 
+          className={`flex flex-col items-center gap-1 h-auto py-2 relative ${
+            activeTab === "wishlist" ? "text-black" : "text-gray-500"
+          }`}
+          onClick={onWishlistClick}
+        >
+          <Heart className="h-5 w-5" />
+          <span className="text-xs">Wishlist</span>
+          {wishlistCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-black text-white text-[10px] rounded-full h-4 w-4 flex items-center justify-center">
+              {wishlistCount}
+            </span>
+          )}
         </Button>
         
         <Button 

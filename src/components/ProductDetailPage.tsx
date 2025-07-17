@@ -212,10 +212,12 @@ const ProductDetailPage = ({
       {/* Bottom Navigation */}
       <BottomNav 
         cartCount={cartCount}
+        wishlistCount={0}
         onHomeClick={onHomeClick}
         onSearchClick={onSearchClick}
         onCartClick={onCartClick}
         onContactClick={onContactClick}
+        onWishlistClick={() => {}}
         activeTab="home"
       />
     </div>
