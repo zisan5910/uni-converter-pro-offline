@@ -791,8 +791,7 @@ const Index = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [cartItems, setCartItems] = useLocalStorage<Array<{ product: Product; size: string; quantity: number }>>('cart-items', []);
   const [wishlist, setWishlist] = useLocalStorage<number[]>('wishlist', []);
-  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState<"home" | "search" | "contact" | "cart" | "product-detail">("home");
+  const [currentPage, setCurrentPage] = useState<"home" | "search" | "contact" | "cart" | "wishlist" | "product-detail">("home");
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -805,7 +804,7 @@ const Index = () => {
   // Scroll to top on page changes
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [currentPage, selectedProduct, isWishlistOpen]);
+  }, [currentPage, selectedProduct]);
 
   // Redirect functionality
   useEffect(() => {
@@ -1022,7 +1021,7 @@ const Index = () => {
     );
   }
 
-  if (isWishlistOpen) {
+  if (currentPage === "wishlist") {
     return (
       <div>
         <OfflineIndicator />
@@ -1032,7 +1031,7 @@ const Index = () => {
           onProductClick={handleProductClick}
           onToggleWishlist={toggleWishlist}
           onAddToCart={addToCart}
-          onBack={() => setIsWishlistOpen(false)}
+          onBack={() => setCurrentPage("home")}
           onHomeClick={navigationHandlers.onHomeClick}
           onSearchClick={navigationHandlers.onSearchClick}
           onCartClick={navigationHandlers.onCartClick}
@@ -1060,7 +1059,7 @@ const Index = () => {
               variant="ghost" 
               size="icon" 
               className="relative hover:bg-gray-50 h-8 w-8"
-              onClick={() => setIsWishlistOpen(true)}
+              onClick={() => setCurrentPage("wishlist")}
             >
               <Heart className="h-4 w-4" />
               {wishlist.length > 0 && (
@@ -1175,7 +1174,7 @@ const Index = () => {
         onSearchClick={navigationHandlers.onSearchClick}
         onCartClick={navigationHandlers.onCartClick}
         onContactClick={navigationHandlers.onContactClick}
-        onWishlistClick={() => setIsWishlistOpen(true)}
+        onWishlistClick={() => setCurrentPage("wishlist")}
         activeTab={currentPage}
       />
     </div>
