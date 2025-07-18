@@ -43,12 +43,12 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
     const emailBody = `Name: ${formData.name}\n\nMessage:\n${formData.message}`;
 
     if (isMobile()) {
-      const mailtoLink = `mailto:ridoan.zisan@gmail.com?subject=${encodeURIComponent(
+      const mailtoLink = `mailto:zisan.traders@gmail.com?subject=${encodeURIComponent(
         formData.subject
       )}&body=${encodeURIComponent(emailBody)}`;
       window.location.href = mailtoLink;
     } else {
-      const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=ridoan.zisan@gmail.com&su=${encodeURIComponent(
+      const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=zisan.traders@gmail.com&su=${encodeURIComponent(
         formData.subject
       )}&body=${encodeURIComponent(emailBody)}`;
       window.open(gmailLink, '_blank');
@@ -165,10 +165,10 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
           <Button
             variant="outline"
             className="w-full"
-            onClick={() => window.open('tel:+8801712525910', '_self')}
+            onClick={() => window.open('tel:+8801757197392', '_self')}
           >
             <Phone className="h-4 w-4 mr-2" />
-            Call +880 1712 525910
+            Call +8801757197392
           </Button>
         </div>
       </div>
