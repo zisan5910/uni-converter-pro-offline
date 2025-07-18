@@ -84,7 +84,7 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
           >
             <ArrowLeft className="h-4 w-4" />
           </Button>
-          <h1 className="text-lg font-extralight tracking-wide">Contact</h1>
+          <h1 className="text-lg font-extralight tracking-wide">যোগাযোগ</h1>
           <div className="w-8" />
         </div>
       </header>
@@ -96,7 +96,7 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
             <div className="space-y-4">
               <div>
                 <Label htmlFor="name" className="text-sm font-medium text-gray-700">
-                  Your Name
+                  আপনার নাম
                 </Label>
                 <Input
                   id="name"
@@ -106,13 +106,13 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
                   onChange={handleChange}
                   required
                   className="mt-1"
-                  placeholder="Enter your full name"
+                  placeholder="আপনার পূর্ণ নাম লিখুন"
                 />
               </div>
 
               <div>
                 <Label htmlFor="subject" className="text-sm font-medium text-gray-700">
-                  Subject
+                  বিষয়
                 </Label>
                 <Input
                   id="subject"
@@ -122,13 +122,13 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
                   onChange={handleChange}
                   required
                   className="mt-1"
-                  placeholder="What is this about?"
+                  placeholder="কী বিষয়ে জানতে চান?"
                 />
               </div>
 
               <div>
                 <Label htmlFor="message" className="text-sm font-medium text-gray-700">
-                  Message
+                  বার্তা
                 </Label>
                 <Textarea
                   id="message"
@@ -138,7 +138,7 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
                   onChange={handleChange}
                   required
                   className="mt-1 resize-none"
-                  placeholder="Tell us more about your inquiry..."
+                  placeholder="আপনার প্রয়োজন সম্পর্কে বিস্তারিত লিখুন..."
                 />
               </div>
 
@@ -150,12 +150,12 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white" />
-                    {isMobile() ? 'Opening Email App...' : 'Opening Gmail...'}
+                    {isMobile() ? 'ইমেইল অ্যাপ খোলা হচ্ছে...' : 'জিমেইল খোলা হচ্ছে...'}
                   </div>
                 ) : (
                   <div className="flex items-center gap-2">
                     <Send className="h-4 w-4" />
-                    Send Message
+                    বার্তা পাঠান
                   </div>
                 )}
               </Button>
@@ -168,7 +168,7 @@ const Contact = ({ onBack, onHomeClick, onSearchClick, onCartClick, cartCount }:
             onClick={() => window.open('tel:+8801757197392', '_self')}
           >
             <Phone className="h-4 w-4 mr-2" />
-            Call +8801757197392
+            ফোন করুন +8801700000000
           </Button>
         </div>
       </div>
