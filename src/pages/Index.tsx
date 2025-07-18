@@ -1053,7 +1053,7 @@ const Index = () => {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
         <div className="flex items-center justify-between px-4 py-3 max-w-7xl mx-auto">
-          <h1 className="text-xl font-extralight tracking-widest">Netlistore</h1>
+          <h1 className="text-xl font-extralight tracking-widest">Zisan Traders</h1>
           
           <div className="flex items-center gap-1">
             <Button 
