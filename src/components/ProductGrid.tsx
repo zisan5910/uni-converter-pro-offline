@@ -1,5 +1,5 @@
 
-import { Heart, ShoppingBag, Zap } from "lucide-react";
+import { Heart, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Product } from "@/types/Product";
 
@@ -56,47 +56,52 @@ const ProductGrid = ({ products, wishlist, onProductClick, onToggleWishlist, onA
               </div>
             )}
             
-            {/* Action Icons - Positioned over the image */}
-            <div className="absolute bottom-2 right-2 flex gap-1">
-              <Button
-                variant="ghost"
-                size="icon"
-                disabled={!product.inStock}
-                className="h-6 w-6 bg-white/90 hover:bg-white shadow-sm backdrop-blur-sm rounded-full border border-gray-200"
-                onClick={(e) => handleBuyNow(e, product)}
-              >
-                <Zap className="h-3 w-3 text-orange-600" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                disabled={!product.inStock}
-                className="h-6 w-6 bg-white/90 hover:bg-white shadow-sm backdrop-blur-sm rounded-full border border-gray-200"
-                onClick={(e) => handleAddToCart(e, product)}
-              >
-                <ShoppingBag className="h-3 w-3 text-gray-700" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className={`h-6 w-6 shadow-sm backdrop-blur-sm rounded-full border ${
-                  wishlist.includes(product.id)
-                    ? "bg-black hover:bg-gray-800 border-black"
-                    : "bg-white/90 hover:bg-white border-gray-200"
-                }`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onToggleWishlist(product.id);
-                }}
-              >
-                <Heart 
-                  className={`h-3 w-3 ${
-                    wishlist.includes(product.id) 
-                      ? "text-white fill-current" 
-                      : "text-gray-700"
-                  }`} 
-                />
-              </Button>
+            {/* Action Icons and Button - Positioned over the image */}
+            <div className="absolute bottom-2 left-2 right-2">
+              <div className="flex items-center justify-between">
+                <div className="flex gap-1">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    disabled={!product.inStock}
+                    className="h-6 w-6 bg-white/90 hover:bg-white shadow-sm backdrop-blur-sm rounded-full border border-gray-200"
+                    onClick={(e) => handleAddToCart(e, product)}
+                  >
+                    <ShoppingBag className="h-3 w-3 text-gray-700" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className={`h-6 w-6 shadow-sm backdrop-blur-sm rounded-full border ${
+                      wishlist.includes(product.id)
+                        ? "bg-black hover:bg-gray-800 border-black"
+                        : "bg-white/90 hover:bg-white border-gray-200"
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onToggleWishlist(product.id);
+                    }}
+                  >
+                    <Heart 
+                      className={`h-3 w-3 ${
+                        wishlist.includes(product.id) 
+                          ? "text-white fill-current" 
+                          : "text-gray-700"
+                      }`} 
+                    />
+                  </Button>
+                </div>
+                
+                {/* Buy Now Button */}
+                <Button
+                  size="sm"
+                  disabled={!product.inStock}
+                  className="h-6 text-xs px-2 bg-orange-600 hover:bg-orange-700 text-white rounded-full"
+                  onClick={(e) => handleBuyNow(e, product)}
+                >
+                  অর্ডার করুন
+                </Button>
+              </div>
             </div>
           </div>
           
